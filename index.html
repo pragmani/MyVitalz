@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=0.95;" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>MyVitalz</title>
+    <script type="text/javascript" src="cordova-2.5.0.js"></script>
+	<style>
+		body,html{
+		  height:100%;
+		}
+
+		div{
+			width:100%;
+			height:100%;
+			text-align:center;
+			vertical-align:middle;
+			position:absolute;
+            display:block;
+		}
+	</style>
+</head>
+<body onload="init()">
+	<br/><br/><br/><br/>
+    <div>
+        <img src="logo.gif" /><br />
+        Loading MyVitalz Application ....
+    </div>
+
+    <script type="text/javascript">
+        function checkConnection() {
+            var networkState = navigator.network.connection.type;
+            var states = {};
+            states[Connection.UNKNOWN] = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI] = 'WiFi connection';
+            states[Connection.CELL_2G] = 'Cell 2G connection';
+            states[Connection.CELL_3G] = 'Cell 3G connection';
+            states[Connection.CELL_4G] = 'Cell 4G connection';
+            states[Connection.NONE] = 'No network connection';
+            return networkState;
+        }
+
+        function onDeviceReady() {
+
+            var networkState = checkConnection();
+
+            if (networkState == Connection.NONE) {
+                navigator.notification.alert('This app requires an internet connection');
+            } else {
+                window.location = "http://216.46.61.106";
+            }
+        }
+
+        function init() {
+            // the next line makes it impossible to see Contacts on the HTC Evo since it
+            // doesn't have a scroll button
+            // document.addEventListener("touchmove", preventBehavior, false);
+            document.addEventListener("deviceready", deviceInfo, true);
+        }
+
+    </script>
+
+</body>
+</html>
